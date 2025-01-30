@@ -7,12 +7,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Eye, EyeOff } from 'lucide-react';
-import Link from 'next/link';
-import Router, { useRouter } from 'next/router';
+import AuthPage from '@/components/AuthPage'
 const AuthPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -26,10 +25,7 @@ const AuthPage = () => {
     // Add your signup logic here
     setTimeout(() => setIsLoading(false), 2000);
   };
- const handleSubmit = () => {
-  
-  router.push('./dashboard/page.jsx')
- }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
       <Card className="w-full max-w-md">
@@ -78,8 +74,8 @@ const AuthPage = () => {
                       </Button>
                     </div>
                   </div>
-                  <Button className="w-full" type="submit" onClick={handleSubmit} >
-                    Submit
+                  <Button className="w-full" type="submit" disabled={isLoading}>
+                    {isLoading ? "Loading..." : "Login"}
                   </Button>
                 </div>
               </form>
